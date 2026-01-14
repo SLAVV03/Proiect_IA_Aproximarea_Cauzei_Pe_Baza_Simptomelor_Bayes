@@ -1,0 +1,112 @@
+{
+  "nodes": [
+    {
+      "id": "Virus",
+      "label": "Infecție cu Viruși/Malware",
+      "type": "cause",
+      "parents": [],
+      "cpt": { "null": 0.15 }
+    },
+    {
+      "id": "HDD_Full",
+      "label": "Hard Disk Plin / Fragmentat",
+      "type": "cause",
+      "parents": [],
+      "cpt": { "null": 0.25 }
+    },
+    {
+      "id": "RAM_Defect",
+      "label": "Memorie RAM Defectă",
+      "type": "cause",
+      "parents": [],
+      "cpt": { "null": 0.05 }
+    },
+    {
+      "id": "Driver_Old",
+      "label": "Drivere Video/Audio Vechi",
+      "type": "cause",
+      "parents": [],
+      "cpt": { "null": 0.10 }
+    },
+    {
+      "id": "Startup_Apps",
+      "label": "Prea multe aplicații în Startup",
+      "type": "cause",
+      "parents": [],
+      "cpt": { "null": 0.40 }
+    },
+    {
+      "id": "Internet_Down",
+      "label": "Probleme Router / Cablu Scos",
+      "type": "cause",
+      "parents": [],
+      "cpt": { "null": 0.10 }
+    },
+    {
+      "id": "PC_Slow",
+      "label": "Calculatorul se mișcă foarte greu",
+      "type": "symptom",
+      "parents": ["Virus", "HDD_Full", "Startup_Apps"],
+      "cpt": {
+        "T,T,T": 0.99, "T,T,F": 0.95, "T,F,T": 0.90, "T,F,F": 0.80,
+        "F,T,T": 0.90, "F,T,F": 0.70, "F,F,T": 0.60, "F,F,F": 0.05
+      }
+    },
+    {
+      "id": "Popups",
+      "label": "Reclame/Ferestre nedorite (Pop-ups)",
+      "type": "symptom",
+      "parents": ["Virus"],
+      "cpt": {
+        "T": 0.95,
+        "F": 0.05
+      }
+    },
+    {
+      "id": "BSOD",
+      "label": "Ecran Albastru (Blue Screen)",
+      "type": "symptom",
+      "parents": ["RAM_Defect", "Driver_Old", "Virus"],
+      "cpt": {
+        "T,T,T": 0.99, "T,T,F": 0.95, "T,F,T": 0.90, "T,F,F": 0.90,
+        "F,T,T": 0.85, "F,T,F": 0.80, "F,F,T": 0.30, "F,F,F": 0.01
+      }
+    },
+    {
+      "id": "No_Net",
+      "label": "Nu se încarcă pagini web",
+      "type": "symptom",
+      "parents": ["Internet_Down", "Virus"],
+      "cpt": {
+        "T,T": 0.99,
+        "T,F": 0.95,
+        "F,T": 0.20,
+        "F,F": 0.01
+      }
+    },
+    {
+      "id": "Freeze",
+      "label": "Ecranul îngheață complet",
+      "type": "symptom",
+      "parents": ["HDD_Full", "RAM_Defect"],
+      "cpt": {
+        "T,T": 0.95,
+        "T,F": 0.60,
+        "F,T": 0.80,
+        "F,F": 0.02
+      }
+    },
+    {
+      "id": "Loud_Fan",
+      "label": "Ventilatorul face zgomot mare",
+      "type": "symptom",
+      "parents": ["Virus", "Startup_Apps"],
+      "cpt": {
+        "T,T": 0.90,
+        "T,F": 0.70,
+        "F,T": 0.50,
+        "F,F": 0.10
+      }
+    }
+  ]
+}
